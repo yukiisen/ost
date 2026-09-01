@@ -9,7 +9,7 @@ Based on [osu! Stamina Improver](https://github.com/wbaws/osu-stamina-improver) 
 No install, no account, works in any modern browser:
 
 - **Locally:** clone the repo, then `npm install && npm run dev`.
-- **Online:** --
+- **Online:** on the website [OST](https://ost-psi.vercel.app/)
 
 ## How it works
 
