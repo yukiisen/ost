@@ -1,0 +1,39 @@
+#leaderboard {
+	height: fit-content !important;
+	padding: 30px;
+
+	table {
+		width: 100%;
+		border: 2px solid var(--light);
+		border-radius: 7px;
+		padding: 2px;
+		margin: 20px;
+
+		th,
+		td {
+			padding: 4px;
+			text-align: start;
+		}
+
+		tr.me {
+			background-color: var(--accent-hover);
+		}
+
+		th {
+			border-bottom: 2px solid var(--light);
+		}
+	}
+
+	.lbloading {
+		text-align: center;
+		padding: 20px;
+	}
+
+	.buttons {
+		width: 100%;
+	}
+	.buttons button {
+		width: 24%;
+		margin: 10px;
+	}
+}

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/icon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>OSU! Stream</title>
+	</head>
+	<body>
+		<div id="wallpaper"></div>
+		<div id="app">
+			<div class="home" id="home">
+				<div class="left">
+					<h2 class="title">OSU! Stamina Trainer</h2>
+
+					<div class="settings">
+						<h3>Settings</h3>
+
+						<div class="options centered">
+							<div class="toggles">
+								<div class="toggle" id="metronome" enabled>
+									<div class="outer centered">
+										<div class="inner"></div>
+									</div>
+									<label>Metronome</label>
+								</div>
+
+								<div class="toggle" id="mousebtn">
+									<div class="outer centered">
+										<div class="inner"></div>
+									</div>
+									<label>Enable Mouse Buttons</label>
+								</div>
+							</div>
+
+							<div class="keys">
+								<input type="text" id="key1" value="Z" />
+								<input type="text" id="key2" value="X" />
+							</div>
+						</div>
+
+						<hr />
+
+						<div class="theme">
+							<h3>Theme</h3>
+							<input
+								type="file"
+								accept=".jpg, .jpeg, .png, .webp, .avif"
+								id="picker"
+								style="display: none"
+							/>
+							<button id="pick-trigger">Change Wallpaper (Up to 4MB)</button>
+
+							<label>Background Dim</label>
+							<div class="range centered" id="bg-dim">
+								<div class="indicator"></div>
+								<div class="hold"></div>
+							</div>
+
+							<label>Background Blur</label>
+							<div class="range centered" id="bg-blur">
+								<div class="indicator"></div>
+								<div class="hold"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right centered">
+					<div class="info centered">
+						<h1>Lv. <label id="level"></label></h1>
+						<h3>Playing as <label id="username"></label></h3>
+					</div>
+
+					<div class="game">
+						<button id="findlevel">Find Suitable Level</button>
+						<button id="start">Start</button>
+						<button id="reset">Reset</button>
+					</div>
+				</div>
+				<hr />
+			</div>
+
+			<div class="centered" id="gameplay">
+				<div class="container centered">
+					<div class="top centered">
+						<div class="content centered">
+							<div class="info centered">
+								<h2 class="leveln centered">
+									Lv. <label></label> <span id="burst-spec">Burst</span>
+								</h2>
+								<h3 class="levelinfo">
+									<label id="bpm-spec"></label> BPM · UR <
+									<label id="ur-spec"></label> ·
+									<label id="notes-spec"></label> Notes
+								</h3>
+
+								<h2 class="benchn leveln centered">
+									Benchmark <label>2</label>/3
+								</h2>
+								<h3 class="benchinfo levelinfo">
+									Stream <label>20</label> notes at your own pace
+								</h3>
+							</div>
+
+							<div class="results centered">
+								<h3 class="bpm centered"><label id="bpm">--</label>BPM</h3>
+								<h3 class="UR centered"><label id="ur">--</label>UR</h3>
+							</div>
+
+							<div class="notes vcentered">
+								<h3 id="note">Time starts at your first click!</h3>
+
+								<p id="advice">
+									This is a very long and interesting Lorem ipsum hic
+									perspiciatis dolorem minus deserunt tempore natus doloribus
+									unde autem? advice.
+								</p>
+							</div>
+
+							<div class="buttons centered">
+								<div class="menu centered">
+									<button id="menu">Menu</button>
+									<button id="action">Stop</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="overlay centered">
+							<button id="btn1">Z</button>
+							<button id="btn2">X</button>
+						</div>
+					</div>
+
+					<div class="progress" id="np">
+						<div class="indicator" id="npi"></div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<div id="leaderboard" class="vcentered">
+				<h3>Global Leaderboard</h3>
+
+				<table>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>PLAYER</th>
+							<th>LEVEL</th>
+							<th>BPM</th>
+							<th>UR</th>
+							<th>TOTAL TAPS</th>
+							<th>SUBMITTED</th>
+						</tr>
+					</thead>
+
+					<tbody id="lbbody">
+						<tr id="status-row">
+							<td colspan="7" class="lbloading">Loading Leaderboard...</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="buttons centered">
+					<button id="rename">Set your name</button>
+					<button id="refresh">Refresh</button>
+				</div>
+			</div>
+
+			<hr />
+
+			<footer>
+				osu! Stamina Trainer · based on
+				<a
+					href="https://github.com/wbaws/osu-stamina-improver"
+					target="_blank"
+					rel="noopener"
+					>osu! Stamina Improver</a
+				>
+				by Yepstare, UI rewrite by
+				<a href="https://github.com/yukiise/ost" target="_blank" rel="noopener"
+					>yukiise</a
+				>
+			</footer>
+		</div>
+
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>
