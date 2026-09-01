@@ -248,6 +248,8 @@ async function press() {
 }
 
 async function finishRun() {
+	if (state.status != "playing") return;
+
 	$("#np").setProp("visibility", "hidden");
 
 	const result = analyze(state.times);
@@ -274,16 +276,25 @@ async function finishRun() {
 		return;
 	}
 
-	const pass = result.bpm >= state.spec.bpm && result.ur <= state.spec.ur;
+	const pass = result.bpm > state.spec.bpm && result.ur < state.spec.ur;
 
 	metroStop();
 
 	if (pass) {
+		state.status = "win";
+
 		setStatus(`Level ${state.level} cleared!`, "clear");
 
 		config.set("level", ++state.level);
 
-		if (!(await submitRun({ result: result, clicks: state.times, ...state }))) {
+		if (
+			!(await submitRun({
+				result: result,
+				clicks: state.times,
+				spec: state.spec,
+				level: state.level - 1,
+			}))
+		) {
 			config.set("lastrun", {
 				clicks: state.times,
 				spec: state.spec,
@@ -293,8 +304,6 @@ async function finishRun() {
 		} else {
 			loadLeaderboard();
 		}
-
-		state.status = "win";
 
 		$("#action").content = "Next Level →";
 
@@ -341,8 +350,8 @@ function loadLevel() {
 
 	if (state.mode == "level") {
 		$(".leveln label").content = String(level);
-		$("#bpm-spec").content = String(spec.bpm);
-		$("#ur-spec").content = String(spec.ur);
+		$("#bpm-spec").content = String(Math.round(spec.bpm));
+		$("#ur-spec").content = String(Math.round(spec.ur));
 		$("#notes-spec").content = String(spec.notes);
 		$("#burst-spec").display(spec.burst);
 	} else {
@@ -441,12 +450,12 @@ function setStatus(text: string, state?: string) {
 }
 
 function showResult(res: AnalyzeResult) {
-	$("#bpm").content = String(res.bpm);
+	$("#bpm").content = String(Math.round(res.bpm));
 
 	if (res.bpm < state.spec.bpm) $("#bpm").elem.classList.add("fail");
 	else $("#bpm").elem.classList.remove("fail");
 
-	$("#ur").content = String(res.ur);
+	$("#ur").content = String(Math.round(res.ur));
 
 	if (res.ur > state.spec.ur) $("#ur").elem.classList.add("fail");
 	else $("#ur").elem.classList.remove("fail");

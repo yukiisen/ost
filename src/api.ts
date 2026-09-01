@@ -33,7 +33,7 @@ export async function submitRun({ spec, result, clicks, level }: RunInfo) {
 		});
 
 		if (!res.ok) {
-			console.log(res.statusText, res.json());
+			console.log(res.status, res.statusText, await res.json());
 			return false;
 		}
 

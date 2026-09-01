@@ -83,7 +83,7 @@ export function levelSpec(L: number): LevelSpec {
 		// burst nerf (2026-08-30): 12 notes from L110 on, 8 before
 		const bnotes = L >= 110 ? 12 : 8;
 		return {
-			bpm: Math.round(base.bpm * (330 / 270)),
+			bpm: base.bpm * (330 / 270),
 			ur: base.ur,
 			notes: bnotes,
 			burst: true,
@@ -132,7 +132,7 @@ export function analyze(times: number[]): AnalyzeResult {
 	if (elapsed <= 0) return { bpm: 0, ur: 0, elapsed: 0 };
 
 	// Actual Calculation
-	const bpm = Math.round(((n / elapsed) * 60000) / 4);
+	const bpm = ((n / elapsed) * 60000) / 4;
 
 	// UR Calculation
 	const diffs = [];
@@ -140,7 +140,7 @@ export function analyze(times: number[]): AnalyzeResult {
 
 	const mean = diffs.reduce((prev, curr) => curr + prev, 0) / diffs.length;
 	const ss = diffs.reduce((prev, curr) => prev + (curr - mean) ** 2, 0);
-	const ur = Math.round(10 * Math.sqrt(ss / diffs.length));
+	const ur = 10 * Math.sqrt(ss / diffs.length);
 
 	return { bpm, ur, elapsed };
 }

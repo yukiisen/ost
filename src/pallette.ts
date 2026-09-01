@@ -18,18 +18,18 @@ interface ColorPallette {
 }
 
 const defaultPallette: ColorPallette = {
-	accent: [140, 80, 50],
-	dark: [60, 20, 10],
-	light: [220, 170, 120],
+	accent: [60, 100, 140],
+	dark: [30, 30, 40],
+	light: [230, 230, 220],
 	text: [255, 255, 255],
-	borders: [122, 44.6, 43.4],
-	accentHover: [143, 85.9, 51.1],
-	softDark: [72, 43.599999999999994, 14.4],
-	softLight: [205, 140.5, 114.5],
-	darkHover: [61.5, 22.95, 10.55],
-	main: [60, 20, 10],
-	softMain: [72, 43.599999999999994, 14.4],
-	secondary: [81, 61.3, 17.7],
+	borders: [42, 64.6, 133.4],
+	accentHover: [63, 105.9, 141.1],
+	softDark: [42, 53.599999999999994, 44.4],
+	softLight: [215, 200.5, 214.5],
+	darkHover: [31.5, 32.95, 40.55],
+	main: [30, 30, 40],
+	softMain: [42, 53.599999999999994, 44.4],
+	secondary: [51, 71.3, 47.7],
 };
 
 // helpers
@@ -100,17 +100,15 @@ export function attachOn(el: Init) {
 }
 
 export function reload() {
-    if (config.wallpaper) $("#wallpaper").setProp(
-		"backgroundImage",
-		`url("${config.wallpaper}")`,
-	);
-    
+	if (config.wallpaper)
+		$("#wallpaper").setProp("backgroundImage", `url("${config.wallpaper}")`);
+
 	applyColorScheme(config.pallette);
 
 	const blur = config.get("bgblur") ?? 0.4;
 	const dim = config.get("bgdim") ?? 70;
 
-	$(":root").setProperty("--wall-brightness", `${100 - (+dim)}%`);
+	$(":root").setProperty("--wall-brightness", `${100 - +dim}%`);
 	$(":root").setProperty("--wall-blur", `${blur}rem`);
 }
 

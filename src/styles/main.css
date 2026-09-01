@@ -2,8 +2,11 @@
 @import "gameplay.css";
 @import "leaderboard.css";
 
-:root {
+* {  
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root {
 
 	color: var(--text);
 
@@ -34,7 +37,8 @@ body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-    background-color: #101010;
+	background-color: #101010;
+    background-image: url("https://raw.githubusercontent.com/yukiisen/wallpapers/refs/heads/main/abyss.jpg");
 	background-position: center center;
 	background-size: cover;
 
