@@ -100,16 +100,17 @@ export function attachOn(el: Init) {
 }
 
 export function reload() {
-	$("#wallpaper").setProp(
+    if (config.wallpaper) $("#wallpaper").setProp(
 		"backgroundImage",
-		`url("${config.wallpaper || "/wallpaper.jpg"}")`,
+		`url("${config.wallpaper}")`,
 	);
+    
 	applyColorScheme(config.pallette);
 
 	const blur = config.get("bgblur") ?? 0.4;
 	const dim = config.get("bgdim") ?? 70;
 
-	$(":root").setProperty("--wall-brightness", `${dim}%`);
+	$(":root").setProperty("--wall-brightness", `${100 - (+dim)}%`);
 	$(":root").setProperty("--wall-blur", `${blur}rem`);
 }
 

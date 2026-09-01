@@ -81,10 +81,18 @@ async function main() {
 	$("#btn1").content = input1.value = keys[0];
 	$("#btn2").content = input2.value = keys[1];
 
+	initSounds();
+
+	const blur = config.get<number>("bgblur") ?? 0.4;
+	const dim = config.get<number>("bgdim") ?? 70;
+
+	Range.setValue($("#bg-dim"), dim);
+	Range.setValue($("#bg-blur"), blur * 100);
+
 	$("#bg-dim").localOn("change", (self) => {
 		const value = Range.value(self);
 		$(":root").setProperty("--wall-brightness", `${100 - value}%`);
-		config.set("bgdim", 100 - value);
+		config.set("bgdim", value);
 	});
 
 	$("#bg-blur").localOn("change", (self) => {
@@ -92,14 +100,6 @@ async function main() {
 		$(":root").setProperty("--wall-blur", `${value / 100}rem`);
 		config.set("bgblur", value / 100);
 	});
-
-	initSounds();
-
-	const blur = config.get<number>("bgblur") ?? 0.4;
-	const dim = config.get<number>("bgdim") ?? 70;
-
-	Range.setValue($("#bg-dim"), 100 - dim);
-	Range.setValue($("#bg-blur"), blur * 100);
 
 	const mousebtns = config.get<boolean>("mousebtn") ?? false;
 	const metronome = config.get<boolean>("metronome") ?? false;
